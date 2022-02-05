@@ -6,5 +6,6 @@ data class ModelIceCream(
     val edition: String,
     val price: Float,
     val imgRes: Int,
-    var countBuy: Int = 1
+    var countBuy: Int = 1,
+    var size: Int = 2
 )

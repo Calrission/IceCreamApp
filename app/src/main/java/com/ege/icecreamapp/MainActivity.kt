@@ -1,16 +1,19 @@
 package com.ege.icecreamapp
 
+import android.media.Image
 import android.os.Bundle
-import android.util.Log
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.ege.icecreamapp.customView.Counter.OnChangeCount
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.bottom_sheet.*
 
 class MainActivity : AppCompatActivity() {
 
     private val menu: MutableList<ModelIceCream> = StaticData.ice_creams
+    lateinit var bottomSheetDialog: BottomSheetDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +43,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val bottomSheetDialog = prepareBottomSheet()
+        bottomSheetDialog = createBottomSheet()
         customize.setOnClickListener {
-            bottomSheetDialog.show()
+            bottomSheetDialog.showWithPrepare(menu[pager.currentItem])
         }
 
         buy.setOnClickListener {
@@ -51,9 +54,35 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun prepareBottomSheet(): BottomSheetDialog{
+    private fun createBottomSheet(): BottomSheetDialog{
         val bottomSheet = BottomSheetDialog(this)
         bottomSheet.setContentView(R.layout.bottom_sheet)
         return bottomSheet
     }
+
+    private fun BottomSheetDialog.showWithPrepare(modelIceCream: ModelIceCream){
+        val views_size = mapOf<ImageView, Pair<Int, Int>>(
+            s_size to Pair(R.drawable.ic_s_size, R.drawable.ic_s_size_no),
+            m_size to Pair(R.drawable.ic_m_size, R.drawable.ic_m_size_no),
+            l_size to Pair(R.drawable.ic_l_size, R.drawable.ic_l_size_no),
+            xl_size to Pair(R.drawable.ic_xl_size, R.drawable.ic_xl_size_no)
+        )
+        fun switchSelectedSize(nowPositionSelected: Int){
+            views_size.forEach{it.key.setImageResource(it.value.second)}
+            val nowImageView = views_size.keys.toList()[nowPositionSelected]
+            val nowPair = views_size[nowImageView]!!
+            nowImageView.setImageResource(nowPair.first)
+        }
+        this.title_bottom_sheet.text = modelIceCream.title
+        switchSelectedSize(modelIceCream.size)
+        views_size.forEach{
+            it.key.setOnClickListener { imageView ->
+                val position = views_size.keys.toList().indexOf(imageView as ImageView)
+                switchSelectedSize(position)
+                modelIceCream.size = position
+            }
+        }
+        this.show()
+    }
+
 }
