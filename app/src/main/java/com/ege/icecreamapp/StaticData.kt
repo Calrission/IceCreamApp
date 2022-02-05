@@ -4,7 +4,7 @@ class StaticData {
     companion object {
         val ice_creams = arrayListOf(
             ModelIceCream(
-                "Banoffee1",
+                "Banoffee",
                 "A refreshing combination of our creamy vanilla shake base blended with mango pieces, mango juice and swirled with mango coulis.",
                 "Basic", 4.5f, R.drawable.image_1
             ),
