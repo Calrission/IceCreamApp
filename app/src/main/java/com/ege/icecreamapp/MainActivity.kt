@@ -82,6 +82,9 @@ class MainActivity : AppCompatActivity() {
                 modelIceCream.size = position
             }
         }
+        this.close.setOnClickListener {
+            this.hide()
+        }
         this.show()
     }
 
