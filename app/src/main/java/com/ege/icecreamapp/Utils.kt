@@ -32,6 +32,4 @@ fun ViewPager2.setupSideItems(nextItemVisibleDp: Int, currentItemHorizontalMargi
         page.alpha = 0.30f + (1 - kotlin.math.abs(position))
     }
     this.setPageTransformer(pageTransformer)
-
-
 }

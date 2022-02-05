@@ -3,7 +3,9 @@ package com.ege.icecreamapp
 import android.media.Image
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.ege.icecreamapp.customView.Counter.OnChangeCount
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -81,6 +83,10 @@ class MainActivity : AppCompatActivity() {
                 switchSelectedSize(position)
                 modelIceCream.size = position
             }
+        }
+        this.rec_settings.apply {
+            adapter = AdapterGroupSettings(modelIceCream.groupSetting)
+            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
         }
         this.close.setOnClickListener {
             this.hide()

@@ -91,7 +91,9 @@
             android:id="@+id/rec_settings"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="18dp"
+            android:fadingEdge="none" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

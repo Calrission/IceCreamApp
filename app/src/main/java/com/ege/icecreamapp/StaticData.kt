@@ -2,6 +2,24 @@ package com.ege.icecreamapp
 
 class StaticData {
     companion object {
+
+        val groups = arrayListOf(
+            GroupSetting("Type of milk", arrayListOf(
+                Setting("Whole milk", false),
+                Setting("Banana milk", false),
+                Setting("Coconut milk", false),
+                Setting("Soy milk", false),
+                Setting("Almond milk", false),
+                Setting("Oat milk", false),
+            ), false),
+            GroupSetting("Extras", arrayListOf(
+                Setting("Whipped Cream +0,5 €", false),
+                Setting("Marshmallow +0,75 €", false),
+                Setting("Kitkat sprinkling +0,75 €", false),
+                Setting("Oreo cookies +0,75 €", false),
+            ), true),
+        )
+
         val ice_creams = arrayListOf(
             ModelIceCream(
                 "Banoffee",
@@ -33,6 +51,11 @@ class StaticData {
                 "A refreshing combination of our creamy vanilla shake base blended with mango pieces, mango juice and swirled with mango coulis.",
                 "Basic", 5.5f, R.drawable.image_3
             ),
+        )
+
+        val groupsSettings = mapOf(
+            "Type of milk" to arrayListOf("Whole milk", "Banana milk", "Coconut milk", "Soy milk", "Almond milk", "Oat milk"),
+            "Extras" to arrayListOf("Whipped Cream +0,5 €", "Marshmallow +0,75 €", "Kitkat sprinkling +0,75 €", "Oreo cookies +0,75 €"),
         )
     }
 }
