@@ -3,6 +3,7 @@ package com.ege.icecreamapp
 import android.content.Context
 import android.util.DisplayMetrics
 import android.view.View
+import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
 
 
@@ -32,4 +33,20 @@ fun ViewPager2.setupSideItems(nextItemVisibleDp: Int, currentItemHorizontalMargi
         page.alpha = 0.30f + (1 - kotlin.math.abs(position))
     }
     this.setPageTransformer(pageTransformer)
+}
+
+fun calculatePriceIceCream(modelIceCream: ModelIceCream): Float{
+    val sumSettings = modelIceCream.groupSetting.map{it.settings.map{ setting -> if (setting.isActivation) setting.cost else 0f}.sum()}.sum()
+    val costSize = when(modelIceCream.size) {
+        0 -> modelIceCream.price - 1f
+        1 -> modelIceCream.price - 0.5f
+        2 -> modelIceCream.price
+        3 -> modelIceCream.price + 1f
+        else -> modelIceCream.price
+    }
+    return (sumSettings + costSize) * modelIceCream.countBuy
+}
+
+fun TextView.setTextWithEndSim(text: CharSequence, sim: Char) {
+    this.text = "$text $sim"
 }

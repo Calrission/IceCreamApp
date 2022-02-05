@@ -5,7 +5,7 @@ class StaticData {
 
         val groups = arrayListOf(
             GroupSetting("Type of milk", arrayListOf(
-                Setting("Whole milk", false),
+                Setting("Whole milk", true),
                 Setting("Banana milk", false),
                 Setting("Coconut milk", false),
                 Setting("Soy milk", false),
@@ -13,10 +13,10 @@ class StaticData {
                 Setting("Oat milk", false),
             ), false),
             GroupSetting("Extras", arrayListOf(
-                Setting("Whipped Cream +0,5 €", false),
-                Setting("Marshmallow +0,75 €", false),
-                Setting("Kitkat sprinkling +0,75 €", false),
-                Setting("Oreo cookies +0,75 €", false),
+                Setting("Whipped Cream +0,5 €", false, 0.5f),
+                Setting("Marshmallow +0,75 €", false, 0.75f),
+                Setting("Kitkat sprinkling +0,75 €", false, 0.75f),
+                Setting("Oreo cookies +0,75 €", false, 0.75f),
             ), true),
         )
 

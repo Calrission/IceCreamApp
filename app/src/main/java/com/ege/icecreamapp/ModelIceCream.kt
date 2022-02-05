@@ -8,7 +8,8 @@ data class ModelIceCream(
     val imgRes: Int,
     var countBuy: Int = 1,
     var size: Int = 2,
-    var groupSetting: List<GroupSetting> = StaticData.groups.map { GroupSetting(it.title, it.settings.map {setting -> Setting(setting.name, setting.isActivation) }, it.canMultiSelect) }   // Пересоздание объектов для разрыва ссылок на список натсроек в StaticData
+    // Пересоздание объектов Setting для разрыва ссылок на элементы списка settings в GroupSetting
+    var groupSetting: List<GroupSetting> = StaticData.groups.map { GroupSetting(it.title, it.settings.map {setting -> Setting(setting.name, setting.isActivation, setting.cost) }, it.canMultiSelect) }
 )
 
 data class GroupSetting(
@@ -19,6 +20,7 @@ data class GroupSetting(
 
 data class Setting (
     val name: String,
-    var isActivation: Boolean
+    var isActivation: Boolean,
+    val cost: Float = 0f
 )
 
