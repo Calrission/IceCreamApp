@@ -1,7 +1,14 @@
 package com.ege.icecreamapp
 
+import android.content.Context
+import android.util.DisplayMetrics
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
+
+
+fun convertDpToPx(dp: Int, context: Context): Float{
+    return dp * (context.resources.displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
+}
 
 /*
 https://stackoverflow.com/a/58088398
@@ -13,8 +20,8 @@ fun ViewPager2.setupSideItems(nextItemVisibleDp: Int, currentItemHorizontalMargi
         clipChildren = false    // allow left/right item is not clipped
         offscreenPageLimit = 1
     }
-    val nextItemVisiblePx = nextItemVisibleDp
-    val currentItemHorizontalMarginPx = currentItemHorizontalMarginDp
+    val nextItemVisiblePx = convertDpToPx(nextItemVisibleDp, context)
+    val currentItemHorizontalMarginPx = convertDpToPx(currentItemHorizontalMarginDp, context)
     val pageTranslationX = nextItemVisiblePx + currentItemHorizontalMarginPx
     val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
         page.translationX = -pageTranslationX * position
@@ -25,4 +32,6 @@ fun ViewPager2.setupSideItems(nextItemVisibleDp: Int, currentItemHorizontalMargi
         page.alpha = 0.30f + (1 - kotlin.math.abs(position))
     }
     this.setPageTransformer(pageTransformer)
+
+
 }
