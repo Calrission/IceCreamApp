@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import com.ege.icecreamapp.R
+import com.ege.icecreamapp.vibrate
 import kotlinx.android.synthetic.main.counter_layout.view.*
 
 class Counter: LinearLayout{
@@ -24,6 +25,11 @@ class Counter: LinearLayout{
         remove_count.setOnClickListener {
             removeOneCounter()
         }
+        this.setOnLongClickListener {
+            updateCounterAndSend(1)
+            vibrate(context)
+            return@setOnLongClickListener true
+        }
     }
 
     private fun initView(context: Context){
@@ -37,18 +43,20 @@ class Counter: LinearLayout{
         setCounterToTextView()
     }
 
+    private fun updateCounterAndSend(newCounter: Int){
+        count = newCounter
+        setCounterToTextView()
+        onChangeCount?.onChange(count)
+    }
+
     private fun addOneCounter(){
-        if (count < 999) {
-            updateCounter(count + 1)
-            onChangeCount?.onChange(count)
-        }
+        if (count < 999)
+            updateCounterAndSend(count + 1)
     }
 
     private fun removeOneCounter(){
-        if (count > 1) {
-            updateCounter(count - 1)
-            onChangeCount?.onChange(count)
-        }
+        if (count > 1)
+            updateCounterAndSend(count - 1)
     }
 
     private fun setCounterToTextView(){

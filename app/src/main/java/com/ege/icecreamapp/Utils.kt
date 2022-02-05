@@ -1,6 +1,11 @@
 package com.ege.icecreamapp
 
 import android.content.Context
+import android.content.Context.VIBRATOR_SERVICE
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.os.VibratorManager
 import android.util.DisplayMetrics
 import android.view.View
 import android.widget.TextView
@@ -49,4 +54,14 @@ fun calculatePriceIceCream(modelIceCream: ModelIceCream): Float{
 
 fun TextView.setTextWithEndSim(text: CharSequence, sim: Char) {
     this.text = "$text $sim"
+}
+
+fun vibrate(context: Context){
+    val vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        val vibratorManager =  context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+        vibratorManager.defaultVibrator;
+    } else {
+        context.getSystemService(VIBRATOR_SERVICE) as Vibrator
+    }
+    vibrator.vibrate(VibrationEffect.createOneShot(100, 1))
 }
