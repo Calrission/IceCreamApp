@@ -21,18 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        pager.setupSideItems(140, 100)
-        pager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                val model = menu[position]
-                title_ice_cream.text = model.title
-                desc.text = model.desc
-                buy.setTextWithEndSim(model.price.toString(), '€')
-                edition_ice_cream.text = "${model.edition} edition"
-                counter.updateCounter(model.countBuy)
-            }
-        })
-        pager.adapter = IceCreamAdapter(menu)
+        initPager()
 
         scroll_content.viewTreeObserver.addOnScrollChangedListener {
             val scrollY: Int = scroll_content.scrollY
@@ -45,7 +34,29 @@ class MainActivity : AppCompatActivity() {
                 reloadNowCostCurrentIceCream()
             }
         }
+        initBottomSheetDialog()
 
+        buy.setOnClickListener {
+
+        }
+    }
+
+    private fun initPager(){
+        pager.setupSideItems(140, 100)
+        pager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                val model = menu[position]
+                title_ice_cream.text = model.title
+                desc.text = model.desc
+                buy.setTextWithEndSim(model.price.toString(), '€')
+                edition_ice_cream.text = "${model.edition} edition"
+                counter.updateCounter(model.countBuy)
+            }
+        })
+        pager.adapter = IceCreamAdapter(menu)
+    }
+
+    private fun initBottomSheetDialog(){
         bottomSheetDialog = createBottomSheet()
         customize.setOnClickListener {
             bottomSheetDialog.showWithPrepare(menu[pager.currentItem])
@@ -53,10 +64,6 @@ class MainActivity : AppCompatActivity() {
 
         bottomSheetDialog.setOnDismissListener {
             reloadNowCostCurrentIceCream()
-        }
-
-        buy.setOnClickListener {
-
         }
     }
 

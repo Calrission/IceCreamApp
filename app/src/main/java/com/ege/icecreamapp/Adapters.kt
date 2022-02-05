@@ -46,7 +46,7 @@ class AdapterGroupSettings(private val groups: List<GroupSetting>): RecyclerView
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val title = groups[position].title
+        holder.itemView.title_group_setting.text = groups[position].title
         val flexboxLayoutManager = FlexboxLayoutManager(holder.itemView.context)
         flexboxLayoutManager.flexDirection = FlexDirection.ROW
         flexboxLayoutManager.flexWrap = FlexWrap.WRAP
