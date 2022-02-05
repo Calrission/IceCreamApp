@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.ege.icecreamapp.customView.Counter.OnChangeCount
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -39,13 +40,20 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val bottomSheetDialog = prepareBottomSheet()
         customize.setOnClickListener {
-
+            bottomSheetDialog.show()
         }
 
         buy.setOnClickListener {
             val count = counter.count
 
         }
+    }
+
+    private fun prepareBottomSheet(): BottomSheetDialog{
+        val bottomSheet = BottomSheetDialog(this)
+        bottomSheet.setContentView(R.layout.bottom_sheet)
+        return bottomSheet
     }
 }
