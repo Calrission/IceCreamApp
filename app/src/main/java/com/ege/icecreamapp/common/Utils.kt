@@ -13,8 +13,11 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
+import com.ege.icecreamapp.common.API
 import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 fun convertDpToPx(dp: Int, context: Context): Float{
@@ -57,7 +60,7 @@ fun calculatePriceIceCream(modelIceCream: ModelIceCream): Float{
     return (sumSettings + costSize) * modelIceCream.countBuy
 }
 
-fun TextView.setTextWithEndSim(text: CharSequence, sim: Char) {
+fun TextView.setTextWithEndText(text: CharSequence, sim: String) {
     this.text = "$text $sim"
 }
 
@@ -71,4 +74,9 @@ fun vibrate(context: Context){
     vibrator.vibrate(VibrationEffect.createOneShot(100, 1))
 }
 
-
+fun initRetrofit(): API {
+    return Retrofit.Builder()
+        .baseUrl("https://api.openrouteservice.org/v2/directions/foot-walking/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build().create(API::class.java)
+}

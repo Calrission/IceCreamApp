@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 val model = menu[position]
                 title_ice_cream.text = model.title
                 desc.text = model.desc
-                buy.setTextWithEndSim(calculatePriceIceCream(model).toString(), '€')
+                buy.setTextWithEndText(calculatePriceIceCream(model).toString(), "€")
                 edition_ice_cream.text = "${model.edition} edition"
                 counter.updateCounter(model.countBuy)
             }
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun reloadNowCostCurrentIceCream(){
-        buy.setTextWithEndSim(calculatePriceIceCream(menu[pager.currentItem]).toString(), '€')
+        buy.setTextWithEndText(calculatePriceIceCream(menu[pager.currentItem]).toString(), "€")
     }
 
     private fun createBottomSheet(): BottomSheetDialog{
