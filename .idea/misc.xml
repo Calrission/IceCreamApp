@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.21458333333333332" />
+        <entry key="app/src/main/res/drawable-v24/shape_backgound_time_delivery.xml" value="0.1585" />
         <entry key="app/src/main/res/drawable/ic_icon_trash.xml" value="0.158" />
         <entry key="app/src/main/res/drawable/shape_accent_button.xml" value="0.158" />
         <entry key="app/src/main/res/drawable/shape_background_bottom_sheet.xml" value="0.158" />
@@ -12,6 +13,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.22" />
         <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/bottom_sheet_map_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/choose_size.xml" value="0.22" />
         <entry key="app/src/main/res/layout/counter_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_group_setting.xml" value="0.1875" />
