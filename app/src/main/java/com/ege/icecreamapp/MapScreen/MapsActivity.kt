@@ -1,6 +1,7 @@
 package com.ege.icecreamapp.MapScreen
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -78,7 +79,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 .icon(bitmapDescriptorFromVector(this, R.drawable.ic_market_coffee_location))
         )
         cameraToLatLng(shopLocation)
-        initLocationUserAndRoads()
+        initLocationUserAndRoadsToHim()
     }
 
     private fun cameraToLatLng(latLng: LatLng){
@@ -100,6 +101,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun drawRoads(coordsLatLng: List<LatLng>){
+        if (roadsLine != null)
+            roadsLine!!.remove()
         val roadsLine = PolylineOptions()
         roadsLine.color(ContextCompat.getColor(this@MapsActivity, R.color.colorBackground))
         roadsLine.visible(true)
@@ -172,12 +175,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         return "${(seconds / 60 / 60).toInt()} hour"
     }
 
-    private fun initLocationUserAndRoads(){
-        reqPer()
+
+    private fun initLocationUserAndRoadsToHim(){
+        cherPer()
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun connectFusedLocationClient(){
         val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
-            reqPer()
-        }
         val locationRequest = LocationRequest()
         locationRequest.fastestInterval = 5000
         locationRequest.interval = 10000
@@ -201,6 +206,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         )!!
     }
 
+    private fun cherPer(){
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+            reqPer()
+        }else{
+            connectFusedLocationClient()
+        }
+    }
+
     private fun reqPer() {
         requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 100)
     }
@@ -212,13 +225,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         markerUser = createMarkerUser(userLatLng)
         if (cameraTo)
             cameraToLatLng(userLatLng)
-        getRoads(shopLocation, userLatLng, object: OnGetRoads{
-            override fun onGet(modelGEO: ModelGEO) {
-                if (roadsLine != null)
-                    roadsLine!!.remove()
-                modelGeoToView(modelGEO)
-            }
-        })
+        initRoads(shopLocation, userLatLng)
     }
 
     override fun onRequestPermissionsResult(
@@ -227,8 +234,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 100 && grantResults.isNotEmpty() && grantResults[0] != PackageManager.PERMISSION_GRANTED){
-            reqPer()
+        if (grantResults.isNotEmpty()) {
+            if (requestCode == 100) {
+                if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    reqPer()
+                } else {
+                    connectFusedLocationClient()
+                }
+            }
         }
     }
 }
