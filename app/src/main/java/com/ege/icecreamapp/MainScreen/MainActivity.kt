@@ -1,11 +1,12 @@
-package com.ege.icecreamapp
+package com.ege.icecreamapp.MainScreen
 
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.ege.icecreamapp.*
+import com.ege.icecreamapp.common.StaticData
 import com.ege.icecreamapp.customView.Counter.OnChangeCount
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_main.*

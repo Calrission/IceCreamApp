@@ -1,4 +1,9 @@
-package com.ege.icecreamapp
+package com.ege.icecreamapp.common
+
+import com.ege.icecreamapp.GroupSetting
+import com.ege.icecreamapp.ModelIceCream
+import com.ege.icecreamapp.R
+import com.ege.icecreamapp.Setting
 
 class StaticData {
     companion object {

@@ -1,7 +1,8 @@
-package com.ege.icecreamapp
+package com.ege.icecreamapp.MapScreen
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.ege.icecreamapp.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap

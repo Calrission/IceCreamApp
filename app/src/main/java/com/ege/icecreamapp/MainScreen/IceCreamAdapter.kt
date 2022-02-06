@@ -1,9 +1,11 @@
-package com.ege.icecreamapp
+package com.ege.icecreamapp.MainScreen
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.ege.icecreamapp.ModelIceCream
+import com.ege.icecreamapp.R
 import kotlinx.android.synthetic.main.item_ice_cream.view.*
 
 class IceCreamAdapter(val ice_creams: List<ModelIceCream>): RecyclerView.Adapter<IceCreamAdapter.ViewHolder>() {

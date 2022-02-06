@@ -1,5 +1,7 @@
 package com.ege.icecreamapp
 
+import com.ege.icecreamapp.common.StaticData
+
 data class ModelIceCream(
     val title: String,
     val desc: String,
@@ -9,7 +11,7 @@ data class ModelIceCream(
     var countBuy: Int = 1,
     var size: Int = 2,
     // Пересоздание объектов Setting для разрыва ссылок на элементы списка settings в GroupSetting
-    var groupSetting: List<GroupSetting> = StaticData.groups.map { GroupSetting(it.title, it.settings.map {setting -> Setting(setting.name, setting.isActivation, setting.cost) }, it.canMultiSelect) }
+    var groupSetting: List<GroupSetting> = StaticData.groups.map { GroupSetting(it.title, it.settings.map { setting -> Setting(setting.name, setting.isActivation, setting.cost) }, it.canMultiSelect) }
 )
 
 data class GroupSetting(
