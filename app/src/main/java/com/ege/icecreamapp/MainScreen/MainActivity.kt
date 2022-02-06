@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.ege.icecreamapp.*
 import com.ege.icecreamapp.common.StaticData
-import com.ege.icecreamapp.customView.Counter.OnChangeCount
+import com.ege.icecreamapp.customView.OnChangeCount
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.bottom_sheet.*
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             gradient.alpha = 0.01f * kotlin.math.abs(scrollY) / 5
         }
 
-        counter.onChangeCount = object: OnChangeCount{
+        counter.onChangeCount = object: OnChangeCount {
             override fun onChange(newCount: Int) {
                 menu[pager.currentItem].countBuy = newCount
                 reloadNowCostCurrentIceCream()

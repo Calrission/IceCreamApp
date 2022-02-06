@@ -1,13 +1,14 @@
 package com.ege.icecreamapp.customView.CountBuyIcon
 
 import android.content.Context
+import android.content.Intent
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
-import com.ege.icecreamapp.MainScreen.IceCreamAdapter
+import com.ege.icecreamapp.MapScreen.MapsActivity
 import com.ege.icecreamapp.ModelIceCream
 import com.ege.icecreamapp.R
-import com.ege.icecreamapp.customView.Counter.OnChangeCount
+import com.ege.icecreamapp.customView.OnChangeCount
 import kotlinx.android.synthetic.main.layout_caount_buy_icon.view.*
 
 class CountBuyIcon: LinearLayout {
@@ -20,6 +21,10 @@ class CountBuyIcon: LinearLayout {
 
     init {
         inflate(context, R.layout.layout_caount_buy_icon, this)
+        this.setOnClickListener {
+            val toMapIntent = Intent(context, MapsActivity::class.java)
+            context.startActivity(toMapIntent)
+        }
         updateCountView()
     }
 

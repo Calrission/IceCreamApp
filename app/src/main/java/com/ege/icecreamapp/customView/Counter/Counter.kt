@@ -1,9 +1,12 @@
 package com.ege.icecreamapp.customView.Counter
 
 import android.content.Context
+import android.os.Handler
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.widget.LinearLayout
 import com.ege.icecreamapp.R
+import com.ege.icecreamapp.customView.OnChangeCount
 import com.ege.icecreamapp.vibrate
 import kotlinx.android.synthetic.main.counter_layout.view.*
 
