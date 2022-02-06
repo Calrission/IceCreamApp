@@ -2,6 +2,8 @@ package com.ege.icecreamapp
 
 import android.content.Context
 import android.content.Context.VIBRATOR_SERVICE
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
@@ -9,7 +11,10 @@ import android.os.VibratorManager
 import android.util.DisplayMetrics
 import android.view.View
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 
 
 fun convertDpToPx(dp: Int, context: Context): Float{
@@ -65,3 +70,5 @@ fun vibrate(context: Context){
     }
     vibrator.vibrate(VibrationEffect.createOneShot(100, 1))
 }
+
+
