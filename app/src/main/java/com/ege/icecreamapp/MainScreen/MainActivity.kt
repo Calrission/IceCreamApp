@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         initPager()
+        initBottomSheetDialog()
 
         scroll_content.viewTreeObserver.addOnScrollChangedListener {
             val scrollY: Int = scroll_content.scrollY
@@ -34,10 +35,9 @@ class MainActivity : AppCompatActivity() {
                 reloadNowCostCurrentIceCream()
             }
         }
-        initBottomSheetDialog()
 
         buy.setOnClickListener {
-
+            bucket.addBuyModelIceCream(menu[pager.currentItem])
         }
     }
 

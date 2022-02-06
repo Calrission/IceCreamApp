@@ -155,16 +155,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_bottom_ui" />
 
-    <ImageView
+    <com.ege.icecreamapp.customView.CountBuyIcon.CountBuyIcon
         android:id="@+id/bucket"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView"
-        app:srcCompat="@drawable/ic_icon_trash" />
+        app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <LinearLayout
         android:layout_width="match_parent"
