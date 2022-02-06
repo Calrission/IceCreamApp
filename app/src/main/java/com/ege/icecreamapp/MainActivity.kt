@@ -1,6 +1,5 @@
 package com.ege.icecreamapp
 
-import android.media.Image
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -48,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                 val model = menu[position]
                 title_ice_cream.text = model.title
                 desc.text = model.desc
-                buy.setTextWithEndSim(model.price.toString(), '€')
+                buy.setTextWithEndSim(calculatePriceIceCream(model).toString(), '€')
                 edition_ice_cream.text = "${model.edition} edition"
                 counter.updateCounter(model.countBuy)
             }
